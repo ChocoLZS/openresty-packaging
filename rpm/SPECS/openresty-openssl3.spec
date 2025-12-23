@@ -1,6 +1,6 @@
 Name:               openresty-openssl3
-Version:            3.4.1
-Release:            1%{?dist}
+Version:            3.5.4
+Release:            2%{?dist}
 Summary:            OpenSSL library for OpenResty
 
 Group:              Development/Libraries
@@ -10,13 +10,13 @@ License:            OpenSSL
 URL:                https://www.openssl.org/
 Source0:            https://github.com/openssl/openssl/releases/download/openssl-%{version}/openssl-%{version}.tar.gz
 
-Patch0:             https://raw.githubusercontent.com/openresty/openresty/master/patches/openssl-3.4.1-sess_set_get_cb_yield.patch
+Patch0:             https://raw.githubusercontent.com/openresty/openresty/master/patches/openssl-3.5.4-sess_set_get_cb_yield.patch
 
 BuildRoot:          %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:      gcc, make, perl
 %if ! 0%{?suse_version}
-BuildRequires:      perl-IPC-Run, perl-IPC-Cmd, perl-Digest, perl-Digest-SHA
+BuildRequires:      perl-IPC-Run, perl-IPC-Cmd, perl-Digest, perl-Digest-SHA, perl-Time-Piece
 %endif
 BuildRequires:      openresty-zlib-devel >= 1.2.11
 Requires:           openresty-zlib >= 1.2.11
@@ -142,6 +142,12 @@ rm -rf %{buildroot}
 %{openssl_prefix}/lib/cmake/OpenSSL/OpenSSLConfigVersion.cmake
 
 %changelog
+* Sun Oct 19 2025 Yichun Zhang (agentzh) 3.5.4-1
+- upgraded OpenSSL to 3.5.4.
+* Fri Jul 4 2025 Yichun Zhang (agentzh) 3.5.1-1
+- upgraded OpenSSL to 3.5.1.
+* Sat Jun 21 2025 Yichun Zhang (agentzh) 3.5.0-1
+- upgraded OpenSSL to 3.5.0.
 * Sat Mar 1 2025 Yichun Zhang (agentzh) 3.4.1-1
 - upgraded OpenSSL to 3.4.1.
 * Sat Sep 14 2024 makerpm 3.0.15
